@@ -11,6 +11,8 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+vim.keymap.set('n', 'ss', ':split<Return>')
+vim.keymap.set('n', 'sv', ':vsplit<Return>')
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -72,5 +74,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = vim.api.nvim_create_augroup('IsumanGroup', {}),
   pattern = '*',
   command = [[%s/\s\+$//e]],
+})
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+  pattern = '*',
+  command = 'set nopaste',
 })
 -- vim: ts=2 sts=2 sw=2 et

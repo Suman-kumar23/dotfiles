@@ -14,13 +14,16 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+
       'williamboman/mason-lspconfig.nvim',
+
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       { 'j-hui/fidget.nvim', opts = {} },
 
       'hrsh7th/cmp-nvim-lsp',
     },
+
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -84,8 +87,8 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
       local servers = {
         -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        gopls = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -95,6 +98,17 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
+        ts_ls = {
+          root_dir = function(...)
+            return require('lspconfig.util').root_pattern '.git'(...)
+          end,
+          single_file_support = false,
+          settings = {
+            typescript = {
+              inlayHints = {},
+            },
+          },
+        },
 
         lua_ls = {
           settings = {
@@ -112,6 +126,11 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'typescript-language-server',
+        'luacheck',
+        'tailwindcss-language-server',
+        'css-lsp',
+        'shellcheck',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
