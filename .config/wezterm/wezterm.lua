@@ -16,6 +16,7 @@ return {
 		ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
 		brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
 	},
+	scrollback_lines = 3500,
 
 	color_scheme = "Dracula",
 	font = wezterm.font("JetBrainsMono Nerd Font"),

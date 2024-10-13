@@ -7,11 +7,12 @@ Step 2 : Delete .git folder inside the dotfiles
 
 Step 3 :
 
-```
+
+```bash
 cd dotfiles && stow .
 ```
 
-Required :
+### Required :
 
 - Terminal : Wezterm
 - NerdFont : Any of your choice
