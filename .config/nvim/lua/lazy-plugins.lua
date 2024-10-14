@@ -20,7 +20,9 @@ require('lazy').setup({
 
   require 'kickstart/plugins/treesitter',
 
-  { import = 'custom.plugins' },
+  require 'kickstart/plugins/neo-tree',
+
+ { import = 'custom.plugins' },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

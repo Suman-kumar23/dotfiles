@@ -23,7 +23,6 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 -- [[ My custom keymaps + some primeagens ]]
 vim.keymap.set('i', 'jk', '<Esc>')
--- vim.keymap.set('n', '<leader>e', '<cmd>25 Lexplore<CR>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
@@ -53,12 +52,6 @@ vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -69,12 +62,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     }
   end,
 })
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = vim.api.nvim_create_augroup('IsumanGroup', {}),
-  pattern = '*',
-  command = [[%s/\s\+$//e]],
-})
+--
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   group = vim.api.nvim_create_augroup('IsumanGroup', {}),
+--   pattern = '*',
+--   command = [[%s/\s\+$//e]],
+-- })
 
 vim.api.nvim_create_autocmd('InsertLeave', {
   pattern = '*',
