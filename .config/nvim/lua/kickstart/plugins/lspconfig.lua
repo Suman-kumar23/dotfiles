@@ -98,17 +98,7 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        ts_ls = {
-          root_dir = function(...)
-            return require('lspconfig.util').root_pattern '.git'(...)
-          end,
-          single_file_support = false,
-          settings = {
-            typescript = {
-              inlayHints = {},
-            },
-          },
-        },
+        ts_ls = {},
 
         lua_ls = {
           settings = {

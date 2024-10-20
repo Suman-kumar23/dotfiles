@@ -31,16 +31,21 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
 
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', ';f', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', ';t', builtin.help_tags, { desc = 'Lists available help tags and opens a new window with the relevant help info on <cr>' })
+      vim.keymap.set('n', ';sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', ';e', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', ';;', builtin.resume, { desc = 'Resume the previous telescope picker' })
+      vim.keymap.set('n', '\\\\', builtin.buffers, { desc = 'Lists open buffers' })
+      vim.keymap.set(
+        'n',
+        ';r',
+        builtin.live_grep,
+        { desc = 'Search for a string in your current working directory and get results live as you type, respects .gitignore' }
+      )
+      vim.keymap.set('n', ';k', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       vim.keymap.set('n', '<leader>/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
