@@ -20,7 +20,7 @@ return {
           grouped = true,
           previewer = false,
           initial_mode = 'normal',
-          layout_config = { height = 30 },
+          layout_config = { height = 20 },
           theme = 'dropdown',
           hijack_netrw = true,
           mappings = {
@@ -40,6 +40,6 @@ return {
     }
     vim.keymap.set('n', '<leader>e', function()
       require('telescope').extensions.file_browser.file_browser()
-    end)
+    end, { desc = 'Open File browser' })
   end,
 }
