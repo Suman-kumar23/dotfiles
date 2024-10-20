@@ -16,7 +16,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
-export PATH="/Users/isuman/.local/bin/scripts:$PATH"
+export PATH="/Users/isuman/.config/scripts:$PATH"
 
 
 

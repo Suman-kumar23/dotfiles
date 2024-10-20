@@ -34,6 +34,10 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- greatest remap ever
 vim.keymap.set('x', '<leader>p', [["_dP]])
 
+-- [[ Lazygit keymap without tmux]]
+
+vim.keymap.set('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = 'Toggle lazygit' })
+
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]])
