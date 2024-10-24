@@ -7,6 +7,7 @@ return {
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
+        'nvim-telescope/telescope-file-browser.nvim',
 
         build = 'make',
 
@@ -19,10 +20,39 @@ return {
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
+      local fb_actions = require 'telescope._extensions.file_browser.actions'
+      local function telescope_buffer_dir()
+        return vim.fn.expand '%:p:h'
+      end
       require('telescope').setup {
         extensions = {
-          ['ui-select'] = {
+          ui_select = {
             require('telescope.themes').get_dropdown(),
+          },
+
+          file_browser = {
+            path = '%:p:h',
+            cwd = telescope_buffer_dir(),
+            respect_gitignore = false,
+            hidden = true,
+            grouped = true,
+            previewer = false,
+            initial_mode = 'normal',
+            layout_config = { height = 20 },
+            theme = 'dropdown',
+            hijack_netrw = true,
+            mappings = {
+              ['i'] = {},
+              ['n'] = {
+                ['/'] = function()
+                  vim.cmd 'startinsert'
+                end,
+                ['n'] = fb_actions.create,
+                ['r'] = fb_actions.rename,
+                ['d'] = fb_actions.remove,
+                ['c'] = fb_actions.copy,
+              },
+            },
           },
         },
       }
@@ -64,6 +94,10 @@ return {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      vim.keymap.set('n', '<leader>e', function()
+        require('telescope').extensions.file_browser.file_browser()
+      end, { desc = 'Open File browser' })
     end,
   },
 }
